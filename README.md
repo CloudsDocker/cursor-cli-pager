@@ -2,6 +2,11 @@
 
 Notify-only Cursor CLI hook: when Warp is sitting on **Run this MCP tool?** or a shell `y/n` gate, ping macOS Notification Center (and Warp via OSC 777). It does **not** auto-approve tools.
 
+## Sample
+
+![image](assets/pager.png)
+
+
 This is a niche pager, not a new category. **Similar tools already exist** — read [docs/related-work.md](docs/related-work.md) before you adopt or publish a copy.
 
 ## Similar / prior art (start here)
