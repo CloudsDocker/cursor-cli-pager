@@ -97,20 +97,20 @@ sequenceDiagram
     HookEngine->>Hook: 启动脚本，通过 stdin 传入 JSON 负载
     
     par 多通道并发通知分发
-        Hook->>PTY: 发送 OSC 777 转义序列 (\033]777;notify;...)
+        Hook->>PTY: 发送 OSC 777 notify 转义序列
         PTY-->>Agent: 唤起 Warp 终端桌面通知
     and
-        Hook->>OS: osascript 'display notification ...'
+        Hook->>OS: osascript display notification
         OS-->>User: 弹出原生 macOS 系统横幅
     and
-        Hook->>Audio: afplay Glass.aiff (异步播放)
+        Hook->>Audio: afplay Glass.aiff 异步播放
         Audio-->>User: 播放清脆 Glass 提示音
     end
     
-    Hook-->>HookEngine: stdout 严格返回 {"permission": "allow"}
-    Note over HookEngine,Agent: 故障开放保障: 退出码 0，微秒级响应
-    Agent->>Agent: 渲染控制台交互菜单: "Run this MCP tool? (y/Tab/n)"
-    User->>Agent: 收到提醒切回 Warp，按下 'y' / Tab / 'n'
+    Hook-->>HookEngine: stdout 严格返回 fail-open allow JSON
+    Note over HookEngine,Agent: 故障开放保障，退出码 0，微秒级响应
+    Agent->>Agent: 渲染控制台交互菜单 Run this MCP tool y Tab n
+    User->>Agent: 收到提醒切回 Warp，按下 y、Tab 或 n
     Agent->>Agent: 继续向下执行任务
 ```
 

@@ -97,20 +97,20 @@ sequenceDiagram
     HookEngine->>Hook: Spawn hook with JSON payload on stdin
     
     par Multi-Channel Alert Dispatch
-        Hook->>PTY: Emit OSC 777 escape sequence (\033]777;notify;...)
+        Hook->>PTY: Emit OSC 777 notify escape sequence
         PTY-->>Agent: Warp desktop notification triggered
     and
-        Hook->>OS: osascript 'display notification ...'
+        Hook->>OS: osascript display notification
         OS-->>User: Native macOS Banner shown
     and
-        Hook->>Audio: afplay Glass.aiff (asynchronous)
+        Hook->>Audio: afplay Glass.aiff asynchronously
         Audio-->>User: Distinct audible notification
     end
     
-    Hook-->>HookEngine: Return strict {"permission": "allow"} to stdout
-    Note over HookEngine,Agent: Fail-open guarantee: exit 0, zero delay
-    Agent->>Agent: Render Interactive TUI: "Run this MCP tool? (y/Tab/n)"
-    User->>Agent: Return to Warp and press 'y' / Tab / 'n'
+    Hook-->>HookEngine: Return fail-open allow JSON to stdout
+    Note over HookEngine,Agent: Fail-open guarantee, exit 0, zero delay
+    Agent->>Agent: Render TUI prompt Run this MCP tool y Tab n
+    User->>Agent: Return to Warp and press y, Tab, or n
     Agent->>Agent: Proceed with tool execution
 ```
 
