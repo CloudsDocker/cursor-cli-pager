@@ -33,8 +33,8 @@ These catch `sleep 30` and some password prompts. They often **miss** Cursor's c
 ## 3. Install the hook
 
 ```bash
-git clone <your-fork-or-this-repo>
-cd cursor-approval-ping   # directory name after you publish
+git clone https://github.com/CloudsDocker/cursor-cli-pager.git
+cd cursor-cli-pager
 chmod +x install.sh
 ./install.sh
 ```
@@ -86,7 +86,14 @@ Do **not** “fix” noise by returning hook `permission: allow` and expecting t
 
 ## 7. Uninstall
 
-Delete the `./hooks/notify-approval.py` entries from `~/.cursor/hooks.json` and remove `~/.cursor/hooks/notify-approval.py`.
+Run the automated uninstaller:
+
+```bash
+chmod +x uninstall.sh
+./uninstall.sh
+```
+
+Or manually remove `./hooks/notify-approval.py` entries from `~/.cursor/hooks.json` and delete `~/.cursor/hooks/notify-approval.py`.
 
 ## 8. Publish this repo on GitHub
 
