@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeMCPExecution": [
+      {
+        "command": "./hooks/notify-approval.py"
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "./hooks/notify-approval.py"
+      }
+    ]
+  }
+}
